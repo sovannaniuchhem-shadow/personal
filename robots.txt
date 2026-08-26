@@ -1,8 +1,0 @@
-# robots.txt — allow search engines everywhere except the admin area.
-# IMPORTANT: after deploying, replace YOUR-DOMAIN below with your real URL.
-
-User-agent: *
-Allow: /
-Disallow: /admin/
-
-Sitemap: https://YOUR-DOMAIN.com/sitemap.xml
