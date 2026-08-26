@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Blog posts by Sovanna CHHEM on web development, design and technology — tutorials, lessons and insights.">
+  <meta name="author" content="Sovanna CHHEM">
+  <meta name="theme-color" content="#060812">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="Sovanna CHHEM">
+  <meta property="og:title" content="Blog — Sovanna CHHEM">
+  <meta property="og:description" content="Blog posts by Sovanna CHHEM on web development, design and technology — tutorials, lessons and insights.">
+  <meta property="og:url" content="https://YOUR-DOMAIN.com/blog.html">
+  <meta property="og:image" content="https://YOUR-DOMAIN.com/images/profile.svg">
+  <meta property="og:image:width" content="500">
+  <meta property="og:image:height" content="500">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Blog — Sovanna CHHEM">
+  <meta name="twitter:description" content="Blog posts by Sovanna CHHEM on web development, design and technology — tutorials, lessons and insights.">
+  <meta name="twitter:image" content="https://YOUR-DOMAIN.com/images/profile.svg">
+  <link rel="canonical" href="https://YOUR-DOMAIN.com/blog.html">
+  <title>Blog — Sovanna CHHEM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='42' fill='%236366f1'/></svg>">
+</head>
+<body data-page="blog">
+
+  <header class="site-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand"><span class="dot" id="brand-dot"></span><img class="nav-logo hidden" id="brand-logo" alt="Logo" src=""><span id="brand-name">Portfolio</span></a>
+      <nav class="nav-links">
+        <a href="index.html" data-nav="home">Home</a>
+        <a href="about.html" data-nav="about">About</a>
+        <a href="projects.html" data-nav="projects">Projects</a>
+        <a href="blog.html" data-nav="blog">Blog</a>
+        <a href="contact.html" data-nav="contact">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <!-- <a href="admin/login.html" class="nav-admin-link"><span data-icon="lock"></span> Admin</a> -->
+        <button class="icon-btn" id="theme-toggle" title="Toggle dark / light mode" data-icon="sun"></button>
+        <button class="icon-btn hamburger" id="hamburger" title="Open menu" aria-label="Open menu" data-icon="menu"></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="backdrop" data-close-menu></div>
+    <div class="drawer">
+      <button class="icon-btn close-btn" data-close-menu aria-label="Close menu" data-icon="close"></button>
+      <a href="index.html" data-nav="home">Home</a>
+      <a href="about.html" data-nav="about">About</a>
+      <a href="projects.html" data-nav="projects">Projects</a>
+      <a href="blog.html" data-nav="blog">Blog</a>
+      <a href="contact.html" data-nav="contact">Contact</a>
+      <!-- <a href="admin/login.html" class="mt-16"><span data-icon="lock"></span> Admin Dashboard</a> -->
+    </div>
+  </div>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <span class="eyebrow"><b>03</b> <i>/</i> Blog</span>
+        <h1 data-reveal>Latest <span class="accent">Posts</span></h1>
+        <p data-reveal style="--delay:.08s">Notes on development, design and everything in between.</p>
+      </div>
+    </section>
+
+    <section class="blog-page">
+      <div class="container">
+        <div class="filter-bar" data-reveal>
+          <div class="search-box">
+            <input type="text" id="post-search" placeholder="Search posts...">
+          </div>
+          <div class="filter-chips" id="post-category-chips"></div>
+        </div>
+        <div class="blog-grid" id="posts-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Post reader modal -->
+  <div class="modal-backdrop hidden" id="post-modal">
+    <div class="modal">
+      <div class="modal-head">
+        <h3><span data-icon="book-open"></span> Reading</h3>
+        <button class="close-btn" id="post-modal-close" aria-label="Close" data-icon="close"></button>
+      </div>
+      <div class="modal-body post-full" id="post-modal-body"></div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3><span id="footer-name">Sovanna CHHEM</span></h3>
+          <p id="footer-desc"></p>
+          <div class="socials mt-16" id="footer-socials"></div>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="projects.html">Projects</a>
+          <a href="blog.html">Blog</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <a href="contact.html">Contact form</a>
+          <!-- <a href="admin/login.html">Admin Dashboard</a> -->
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="year"></span> <span id="footer-copy-name"></span>. All rights reserved.</span>
+        <span style="display:inline-flex;align-items:center;gap:14px;flex-wrap:wrap">
+          <span>Built with HTML, CSS &amp; vanilla JavaScript</span>
+          <a href="admin/login.html" class="footer-admin-link"><span data-icon="lock"></span> </a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <button class="scroll-top" id="scroll-top" aria-label="Scroll to top" data-icon="chevron-up"></button>
+
+  <script src="js/icons.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

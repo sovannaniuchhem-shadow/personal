@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Dashboard · Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='42' fill='%236366f1'/></svg>">
+</head>
+<body class="admin-body" data-page="dashboard">
+
+  <aside class="sidebar" id="sidebar"></aside>
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="admin-main">
+    <header class="topbar">
+      <button class="icon-btn sidebar-toggle" id="sidebar-toggle" aria-label="Open menu" data-icon="menu"></button>
+      <h1 class="page-title">Dashboard</h1>
+      <div class="topbar-actions">
+        <a href="../index.html" class="view-site" target="_blank" rel="noopener"><span data-icon="globe"></span> <span>View Site</span></a>
+        <button class="icon-btn" id="theme-toggle" title="Toggle theme" data-icon="sun"></button>
+      </div>
+    </header>
+
+    <main class="admin-content">
+      <!-- Profile image panel -->
+      <section class="panel profile-panel">
+        <div class="profile-panel-inner">
+          <div class="profile-avatar">
+            <img id="dash-avatar" src="../images/profile.svg" alt="Profile photo">
+          </div>
+          <div class="profile-info">
+            <h2 id="dash-name">Sovanna CHHEM</h2>
+            <p class="profile-title" id="dash-title">Full-Stack Web Developer</p>
+            <p class="panel-sub">Your photo appears in the hero, about page and sidebar. Manage it right here.</p>
+            <div class="profile-image-controls">
+              <label class="btn btn-ghost btn-sm file-btn">
+                <span data-icon="image"></span> Upload photo
+                <input type="file" id="dash-avatar-file" accept="image/*">
+              </label>
+              <input type="text" id="dash-avatar-url" placeholder="images/profile.jpg or https://...">
+              <button class="btn btn-primary btn-sm" id="dash-avatar-save"><span data-icon="save"></span> Save</button>
+            </div>
+          </div>
+          <a href="profile.html" class="btn btn-ghost btn-sm profile-edit-link">Edit Full Profile</a>
+        </div>
+      </section>
+
+      <!-- Website logo panel -->
+      <section class="panel logo-panel">
+        <div class="profile-panel-inner">
+          <div class="logo-preview">
+            <img id="dash-logo" src="" alt="Logo preview">
+          </div>
+          <div class="profile-info">
+            <h2>Website Logo</h2>
+            <p class="panel-sub">Shown in the navigation bar. Leave empty to use the default dot + name.</p>
+            <div class="profile-image-controls">
+              <label class="btn btn-ghost btn-sm file-btn">
+                <span data-icon="image"></span> Upload logo
+                <input type="file" id="dash-logo-file" accept="image/*">
+              </label>
+              <input type="text" id="dash-logo-url" placeholder="images/logo.png or https://...">
+              <button class="btn btn-primary btn-sm" id="dash-logo-save"><span data-icon="save"></span> Save</button>
+              <button class="btn btn-ghost btn-sm" id="dash-logo-remove"><span data-icon="trash"></span> Remove</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="stats-grid" id="stats-grid"></div>
+
+      <div class="dashboard-grid">
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <h2>Recent Projects</h2>
+              <p class="panel-sub">Your latest work</p>
+            </div>
+            <a href="projects.html" class="btn btn-ghost btn-sm">Manage</a>
+          </div>
+          <div class="recent-list" id="recent-projects"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <h2>Recent Blog Posts</h2>
+              <p class="panel-sub">Latest published articles</p>
+            </div>
+            <a href="blog.html" class="btn btn-ghost btn-sm">Manage</a>
+          </div>
+          <div class="recent-list" id="recent-posts"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <h2>Recent Messages</h2>
+              <p class="panel-sub">Latest contact form submissions</p>
+            </div>
+            <a href="messages.html" class="btn btn-ghost btn-sm">View all</a>
+          </div>
+          <div class="recent-list" id="recent-messages"></div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/icons.js"></script>
+  <script src="../js/storage.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/dashboard.js"></script>
+</body>
+</html>

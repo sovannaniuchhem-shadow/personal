@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Skills · Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='42' fill='%236366f1'/></svg>">
+</head>
+<body class="admin-body" data-page="skills">
+
+  <aside class="sidebar" id="sidebar"></aside>
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="admin-main">
+    <header class="topbar">
+      <button class="icon-btn sidebar-toggle" id="sidebar-toggle" aria-label="Open menu" data-icon="menu"></button>
+      <h1 class="page-title">Skills</h1>
+      <div class="topbar-actions">
+        <a href="../index.html" class="view-site" target="_blank" rel="noopener"><span data-icon="globe"></span> <span>View Site</span></a>
+        <button class="icon-btn" id="theme-toggle" title="Toggle theme" data-icon="sun"></button>
+      </div>
+    </header>
+
+    <main class="admin-content">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <h2>Manage Skills</h2>
+            <p class="panel-sub">These cards appear on your homepage</p>
+          </div>
+          <div class="panel-actions">
+            <div class="search-box" style="max-width:260px;min-width:0">
+              <input type="text" id="skill-search" placeholder="Search skills...">
+            </div>
+            <button class="btn btn-primary btn-sm" id="skill-add-btn"><span data-icon="plus"></span> Add Skill</button>
+          </div>
+        </div>
+        <div class="skill-manage-grid" id="skills-manage-grid"></div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Skill modal -->
+  <div class="modal-backdrop hidden" id="skill-modal">
+    <div class="modal admin-modal">
+      <div class="modal-head">
+        <h3 id="skill-modal-title">Add Skill</h3>
+        <button class="close-btn" data-close="skill-modal" aria-label="Close" data-icon="close"></button>
+      </div>
+      <form class="modal-body" id="skill-form" novalidate>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="sk-name">Skill name <span class="req">*</span></label>
+            <input type="text" id="sk-name" placeholder="e.g. JavaScript">
+            <span class="error-msg">Name is required.</span>
+          </div>
+          <div class="form-group full">
+            <label>Icon</label>
+            <div class="icon-picker" id="sk-icon-picker"></div>
+          </div>
+          <div class="form-group full">
+            <label for="sk-level">Skill level: <strong id="sk-level-out">0%</strong></label>
+            <input type="range" id="sk-level" min="0" max="100" step="5" value="0">
+            <span class="error-msg">Level must be between 0 and 100.</span>
+          </div>
+        </div>
+        <div class="panel-actions">
+          <button type="submit" class="btn btn-primary" id="skill-save-btn"><span data-icon="save"></span> Save Skill</button>
+          <button type="button" class="btn btn-ghost" data-close="skill-modal">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="../js/icons.js"></script>
+  <script src="../js/storage.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/skills.js"></script>
+</body>
+</html>

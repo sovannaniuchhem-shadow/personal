@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Blog · Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='42' fill='%236366f1'/></svg>">
+</head>
+<body class="admin-body" data-page="blog">
+
+  <aside class="sidebar" id="sidebar"></aside>
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="admin-main">
+    <header class="topbar">
+      <button class="icon-btn sidebar-toggle" id="sidebar-toggle" aria-label="Open menu" data-icon="menu"></button>
+      <h1 class="page-title">Blog</h1>
+      <div class="topbar-actions">
+        <a href="../index.html" class="view-site" target="_blank" rel="noopener"><span data-icon="globe"></span> <span>View Site</span></a>
+        <button class="icon-btn" id="theme-toggle" title="Toggle theme" data-icon="sun"></button>
+      </div>
+    </header>
+
+    <main class="admin-content">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <h2>Manage Blog Posts</h2>
+            <p class="panel-sub">Only published posts appear on the public site</p>
+          </div>
+          <div class="panel-actions">
+            <div class="search-box" style="max-width:260px;min-width:0">
+              <input type="text" id="post-search" placeholder="Search posts...">
+            </div>
+            <button class="btn btn-primary btn-sm" id="post-add-btn"><span data-icon="plus"></span> Add Post</button>
+          </div>
+        </div>
+        <div class="filter-chips" id="post-filter-chips" style="margin-bottom:18px"></div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Post</th>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th style="width:110px">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="posts-table-body"></tbody>
+          </table>
+        </div>
+        <div class="hidden" id="posts-empty"></div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Post modal -->
+  <div class="modal-backdrop hidden" id="post-modal">
+    <div class="modal admin-modal wide">
+      <div class="modal-head">
+        <h3 id="post-modal-title">Add Post</h3>
+        <button class="close-btn" data-close="post-modal" aria-label="Close" data-icon="close"></button>
+      </div>
+      <form class="modal-body" id="post-form" novalidate>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="po-title">Post title <span class="req">*</span></label>
+            <input type="text" id="po-title" placeholder="e.g. My Web Development Journey">
+            <span class="error-msg">Title is required.</span>
+          </div>
+          <div class="form-group">
+            <label for="po-category">Category <span class="req">*</span></label>
+            <input type="text" id="po-category" placeholder="e.g. Development">
+            <span class="error-msg">Category is required.</span>
+          </div>
+          <div class="form-group">
+            <label for="po-date">Date</label>
+            <input type="date" id="po-date">
+          </div>
+          <div class="form-group">
+            <label class="mt-8" style="display:flex;align-items:center;gap:10px">
+              <span class="switch">
+                <input type="checkbox" id="po-published" checked>
+                <span class="slider"></span>
+              </span>
+              Published (visible on the site)
+            </label>
+          </div>
+          <div class="form-group full">
+            <label>Featured image</label>
+            <div class="image-picker">
+              <img class="preview" id="po-img-preview" alt="Preview">
+              <div class="controls">
+                <label class="btn btn-ghost btn-sm file-btn">
+                  <span data-icon="image"></span> Choose image
+                  <input type="file" id="po-image-file" accept="image/*">
+                </label>
+                <input type="text" id="po-image" placeholder="images/blog/blog1.jpg or https://...">
+                <small>Uploads are auto-compressed (max 1280 px, WebP/JPEG) to keep LocalStorage small.</small>
+              </div>
+            </div>
+          </div>
+          <div class="form-group full">
+            <label for="po-content">Content <span class="req">*</span></label>
+            <textarea id="po-content" rows="7" placeholder="Write your post here. Blank lines create paragraphs."></textarea>
+            <span class="error-msg">Content is required (at least 10 characters).</span>
+          </div>
+        </div>
+        <div class="panel-actions">
+          <button type="submit" class="btn btn-primary" id="post-save-btn"><span data-icon="save"></span> Save Post</button>
+          <button type="button" class="btn btn-ghost" data-close="post-modal">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="../js/icons.js"></script>
+  <script src="../js/storage.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/blog.js"></script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Projects · Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='42' fill='%236366f1'/></svg>">
+</head>
+<body class="admin-body" data-page="projects">
+
+  <aside class="sidebar" id="sidebar"></aside>
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="admin-main">
+    <header class="topbar">
+      <button class="icon-btn sidebar-toggle" id="sidebar-toggle" aria-label="Open menu" data-icon="menu"></button>
+      <h1 class="page-title">Projects</h1>
+      <div class="topbar-actions">
+        <a href="../index.html" class="view-site" target="_blank" rel="noopener"><span data-icon="globe"></span> <span>View Site</span></a>
+        <button class="icon-btn" id="theme-toggle" title="Toggle theme" data-icon="sun"></button>
+      </div>
+    </header>
+
+    <main class="admin-content">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <h2>Manage Projects</h2>
+            <p class="panel-sub">Changes appear on the public site instantly</p>
+          </div>
+          <div class="panel-actions">
+            <div class="search-box" style="max-width:260px;min-width:0">
+              <input type="text" id="project-search" placeholder="Search projects...">
+            </div>
+            <button class="btn btn-primary btn-sm" id="project-add-btn"><span data-icon="plus"></span> Add Project</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Project</th>
+                <th>Title</th>
+                <th>Technologies</th>
+                <th>Links</th>
+                <th style="width:110px">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="projects-table-body"></tbody>
+          </table>
+        </div>
+        <div class="hidden" id="projects-empty"></div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Project modal -->
+  <div class="modal-backdrop hidden" id="project-modal">
+    <div class="modal admin-modal wide">
+      <div class="modal-head">
+        <h3 id="project-modal-title">Add Project</h3>
+        <button class="close-btn" data-close="project-modal" aria-label="Close" data-icon="close"></button>
+      </div>
+      <form class="modal-body" id="project-form" novalidate>
+        <div class="form-grid">
+          <div class="form-group full">
+            <label for="pr-title">Project title <span class="req">*</span></label>
+            <input type="text" id="pr-title" placeholder="e.g. AnimeVerse">
+            <span class="error-msg">Title is required.</span>
+          </div>
+          <div class="form-group full">
+            <label for="pr-desc">Description</label>
+            <textarea id="pr-desc" rows="3" placeholder="Short description of the project"></textarea>
+          </div>
+          <div class="form-group full">
+            <label>Project image</label>
+            <div class="image-picker">
+              <img class="preview" id="pr-img-preview" alt="Preview">
+              <div class="controls">
+                <label class="btn btn-ghost btn-sm file-btn">
+                  <span data-icon="image"></span> Choose image
+                  <input type="file" id="pr-image-file" accept="image/*">
+                </label>
+                <input type="text" id="pr-image" placeholder="images/projects/project1.jpg or https://...">
+                <small>Uploads are auto-compressed (max 1280 px, WebP/JPEG) to keep LocalStorage small.</small>
+              </div>
+            </div>
+          </div>
+          <div class="form-group full">
+            <label for="pr-tech">Technologies</label>
+            <input type="text" id="pr-tech" placeholder="Comma separated, e.g. HTML, CSS, JavaScript">
+          </div>
+          <div class="form-group">
+            <label for="pr-github">GitHub URL</label>
+            <input type="url" id="pr-github" placeholder="https://github.com/user/repo">
+            <span class="error-msg">Please enter a valid URL.</span>
+          </div>
+          <div class="form-group">
+            <label for="pr-demo">Live Demo URL</label>
+            <input type="url" id="pr-demo" placeholder="https://myproject.com">
+            <span class="error-msg">Please enter a valid URL.</span>
+          </div>
+        </div>
+        <div class="panel-actions">
+          <button type="submit" class="btn btn-primary" id="project-save-btn"><span data-icon="save"></span> Save Project</button>
+          <button type="button" class="btn btn-ghost" data-close="project-modal">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="../js/icons.js"></script>
+  <script src="../js/storage.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/projects.js"></script>
+</body>
+</html>
