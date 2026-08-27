@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <!-- ============================================================
+       Sovanna CHHEM — Full-Stack Web Developer Portfolio
+       Pure HTML5 + CSS3 + vanilla JavaScript (no frameworks)
+       ============================================================ -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO -->
+  <title>Sovanna CHHEM — Full-Stack Web Developer</title>
+  <meta name="description" content="Portfolio of Sovanna CHHEM, a modern Full-Stack Web Developer building responsive, user-friendly web applications with clean code and creative solutions." />
+  <meta name="keywords" content="Sovanna CHHEM, Full-Stack Developer, Web Developer, HTML, CSS, JavaScript, Node.js, Express, MySQL, MongoDB, Portfolio" />
+  <meta name="author" content="Sovanna CHHEM" />
+  <meta name="theme-color" content="#060812" />
+
+  <!-- Open Graph (social sharing) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Sovanna CHHEM — Full-Stack Web Developer" />
+  <meta property="og:description" content="I build modern, responsive, and user-friendly web applications with clean code and creative solutions." />
+  <meta property="og:url" content="https://sovanna-chhem.dev/" />
+  <meta property="og:site_name" content="Sovanna CHHEM" />
+
+  <!-- Favicon (SC monogram) -->
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg" />
+
+  <!-- Fonts: Orbitron (display), Poppins (body), Battambang (Khmer), JetBrains Mono (code) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Battambang:wght@300;400;700&family=JetBrains+Mono:wght@400;500&family=Orbitron:wght@500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Prevent theme flash: apply saved theme before the page paints.
+       The full theme logic lives in script.js (localStorage key: sc-portfolio-theme). -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("sc-portfolio-theme");
+        document.documentElement.setAttribute("data-theme", saved === "light" ? "light" : "dark");
+      } catch (e) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    })();
+  </script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- ============ SVG SPRITE (all icons defined once, reused with <use>) ============ -->
+  <svg class="svg-sprite" aria-hidden="true" focusable="false">
+    <defs>
+      <!-- Brand icons (devicon style, 128 viewBox) -->
+      <symbol id="i-html5" viewBox="0 0 128 128"><path fill="#E44D26" d="M19.037 113.876L9.032 1.661h109.936l-10.016 112.198-45.019 12.48z"/><path fill="#F16529" d="M64 116.8l36.378-10.086 8.559-95.878H64z"/><path fill="#EBEBEB" d="M64 52.455H45.788L44.53 38.361H64V24.599H29.489l.33 3.692 3.382 37.927H64zm0 35.743l-.061.017-15.327-4.14-.979-10.975H33.816l1.928 21.609 28.193 7.826.063-.017z"/><path fill="#fff" d="M63.952 52.455v13.763h16.947l-1.597 17.849-15.35 4.143v14.319l28.215-7.82.207-2.325 3.234-36.233.335-3.696h-3.708zm0-27.856v13.762h33.244l.276-3.092.628-6.978.329-3.692z"/></symbol>
+      <symbol id="i-css3" viewBox="0 0 128 128"><path fill="#1572B6" d="M18.814 114.123L8.76 1.352h110.48l-10.064 112.754-45.243 12.543-45.119-12.526z"/><path fill="#33A9DC" d="M64.001 117.062l36.559-10.136 8.601-96.354h-45.16v106.49z"/><path fill="#fff" d="M64.001 51.429h18.302l1.264-14.163H64.001V23.435h34.682l-.332 3.711-3.4 38.114h-30.95V51.429z"/><path fill="#EBEBEB" d="M64.083 87.349l-.061.018-15.403-4.159-.985-11.031H33.752l1.937 21.717 28.331 7.863.063-.018v-14.39z"/><path fill="#fff" d="M81.127 64.675l-1.666 18.522-15.426 4.164v14.39l28.354-7.858.208-2.337 2.406-26.881H81.127z"/><path fill="#EBEBEB" d="M64.048 23.435v13.831H30.64l-.277-3.108-.63-7.012-.331-3.711h34.646zm-.047 27.996v13.831H48.792l-.277-3.108-.631-7.012-.33-3.711h16.447z"/></symbol>
+      <symbol id="i-js" viewBox="0 0 128 128"><path fill="#F0DB4F" d="M1.408 1.408h125.184v125.185H1.408z"/><path fill="#323330" d="M116.347 96.736c-.917-5.711-4.641-10.508-15.672-14.981-3.832-1.761-8.104-3.022-9.377-5.926-.452-1.69-.512-2.642-.226-3.665.821-3.32 4.784-4.355 7.925-3.403 2.023.678 3.938 2.237 5.093 4.724 5.402-3.498 5.391-3.475 9.163-5.879-1.381-2.141-2.118-3.129-3.022-4.045-3.249-3.629-7.676-5.498-14.756-5.355l-3.688.477c-3.534.893-6.902 2.748-8.877 5.235-5.926 6.724-4.236 18.492 2.975 23.335 7.104 5.332 17.54 6.545 18.873 11.531 1.297 6.104-4.486 8.08-10.234 7.378-4.236-.881-6.592-3.034-9.139-6.949-4.688 2.713-4.688 2.713-9.508 5.485 1.143 2.499 2.344 3.63 4.26 5.795 9.068 9.198 31.76 8.746 35.83-5.176.165-.478 1.261-3.666.38-8.581zM69.462 58.943H57.753l-.048 30.272c0 6.438.333 12.34-.714 14.149-1.713 3.558-6.152 3.117-8.175 2.427-2.059-1.012-3.106-2.451-4.319-4.485-.333-.584-.583-1.036-.667-1.071l-9.52 5.83c1.583 3.249 3.915 6.069 6.902 7.901 4.462 2.678 10.459 3.499 16.731 2.059 4.082-1.189 7.604-3.652 9.448-7.401 2.666-4.915 2.094-10.864 2.07-17.444.06-10.735.001-21.468.001-32.237z"/></symbol>
+      <symbol id="i-node" viewBox="0 0 128 128"><path fill="url(#ng1)" d="M66.958.825a6.07 6.07 0 0 0-6.035 0L11.103 29.76c-1.895 1.072-2.96 3.095-2.96 5.24v57.988c0 2.143 1.183 4.167 2.958 5.24l49.82 28.934a6.07 6.07 0 0 0 6.036 0l49.82-28.935c1.894-1.072 2.958-3.096 2.958-5.24V35c0-2.144-1.183-4.167-2.958-5.24z"/><path fill="url(#ng2)" d="M116.897 29.76 66.841.825A8.161 8.161 0 0 0 65.302.23L9.21 96.798a6.251 6.251 0 0 0 1.657 1.43l50.057 28.934c1.42.833 3.076 1.072 4.615.595l52.66-96.925a3.702 3.702 0 0 0-1.302-1.072z"/><path fill="url(#ng3)" d="M116.898 98.225c1.42-.833 2.485-2.262 2.958-3.81L65.066.108c-1.42-.238-2.959-.119-4.26.715L11.104 29.639l53.606 98.355c.71-.12 1.54-.358 2.25-.715z"/><defs><linearGradient id="ng1" x1="34.513" x2="27.157" y1="15.535" y2="30.448" gradientTransform="translate(-129.242 -73.715) scale(6.18523)" gradientUnits="userSpaceOnUse"><stop stop-color="#3F873F"/><stop offset=".33" stop-color="#3F8B3D"/><stop offset=".637" stop-color="#3E9638"/><stop offset=".934" stop-color="#3DA92E"/><stop offset="1" stop-color="#3DAE2B"/></linearGradient><linearGradient id="ng2" x1="30.009" x2="50.533" y1="23.359" y2="8.288" gradientTransform="translate(-129.242 -73.715) scale(6.18523)" gradientUnits="userSpaceOnUse"><stop offset=".138" stop-color="#3F873F"/><stop offset=".402" stop-color="#52A044"/><stop offset=".713" stop-color="#64B749"/><stop offset=".908" stop-color="#6ABF4B"/></linearGradient><linearGradient id="ng3" x1="21.917" x2="40.555" y1="22.261" y2="22.261" gradientTransform="translate(-129.242 -73.715) scale(6.18523)" gradientUnits="userSpaceOnUse"><stop offset=".092" stop-color="#6ABF4B"/><stop offset=".287" stop-color="#64B749"/><stop offset=".598" stop-color="#52A044"/><stop offset=".862" stop-color="#3F873F"/></linearGradient></defs></symbol>
+      <symbol id="i-express" viewBox="0 0 128 128"><path fill="currentColor" d="M126.67 98.44c-4.56 1.16-7.38.05-9.91-3.75-5.68-8.51-11.95-16.63-18-24.9-.78-1.07-1.59-2.12-2.6-3.45C89 76 81.85 85.2 75.14 94.77c-2.4 3.42-4.92 4.91-9.4 3.7l26.92-36.13L67.6 29.71c4.31-.84 7.29-.41 9.93 3.45 5.83 8.52 12.26 16.63 18.67 25.21 6.45-8.55 12.8-16.67 18.8-25.11 2.41-3.42 5-4.72 9.33-3.46-3.28 4.35-6.49 8.63-9.72 12.88-4.36 5.73-8.64 11.53-13.16 17.14-1.61 2-1.35 3.3.09 5.19C109.9 76 118.16 87.1 126.67 98.44zM1.33 61.74c.72-3.61 1.2-7.29 2.2-10.83 6-21.43 30.6-30.34 47.5-17.06C60.93 41.64 63.39 52.62 62.9 65H7.1c-.84 22.21 15.15 35.62 35.53 28.78 7.15-2.4 11.36-8 13.47-15 1.07-3.51 2.84-4.06 6.14-3.06-1.69 8.76-5.52 16.08-13.52 20.66-12 6.86-29.13 4.64-38.14-4.89C5.26 85.89 3 78.92 2 71.39c-.15-1.2-.46-2.38-.7-3.57q.03-3.04.03-6.08zm5.87-1.49h50.43c-.33-16.06-10.33-27.47-24-27.57-15-.12-25.78 11.02-26.43 27.57z"/></symbol>
+      <symbol id="i-mysql" viewBox="0 0 128 128"><path fill="#00618A" d="M117.688 98.242c-6.973-.191-12.297.461-16.852 2.379-1.293.547-3.355.559-3.566 2.18.711.746.82 1.859 1.387 2.777 1.086 1.754 2.922 4.113 4.559 5.352 1.789 1.348 3.633 2.793 5.551 3.961 3.414 2.082 7.223 3.27 10.504 5.352 1.938 1.23 3.859 2.777 5.75 4.164.934.684 1.563 1.75 2.773 2.18v-.195c-.637-.812-.801-1.93-1.387-2.777l-2.578-2.578c-2.52-3.344-5.719-6.281-9.117-8.719-2.711-1.949-8.781-4.578-9.91-7.73l-.199-.199c1.922-.219 4.172-.914 5.949-1.391 2.98-.797 5.645-.59 8.719-1.387l4.164-1.187v-.793c-1.555-1.594-2.664-3.707-4.359-5.152-4.441-3.781-9.285-7.555-14.273-10.703-2.766-1.746-6.184-2.883-9.117-4.363-.988-.496-2.719-.758-3.371-1.586-1.539-1.961-2.379-4.449-3.566-6.738-2.488-4.793-4.93-10.023-7.137-15.066-1.504-3.437-2.484-6.828-4.359-9.91-9-14.797-18.687-23.73-33.695-32.508-3.195-1.867-7.039-2.605-11.102-3.57l-6.543-.395c-1.332-.555-2.715-2.184-3.965-2.977C16.977 3.52 4.223-3.312.539 5.672-1.785 11.34 4.016 16.871 6.09 19.746c1.457 2.012 3.32 4.273 4.359 6.539.688 1.492.805 2.984 1.391 4.559 1.438 3.883 2.695 8.109 4.559 11.695.941 1.816 1.98 3.727 3.172 5.352.727.996 1.98 1.438 2.18 2.973-1.227 1.715-1.297 4.375-1.984 6.543-3.098 9.77-1.926 21.91 2.578 29.137 1.383 2.223 4.641 6.98 9.117 5.156 3.918-1.598 3.043-6.539 4.164-10.902.254-.988.098-1.715.594-2.379v.199l3.57 7.133c2.641 4.254 7.324 8.699 11.297 11.699 2.059 1.555 3.68 4.242 6.344 5.152v-.199h-.199c-.516-.805-1.324-1.137-1.98-1.781-1.551-1.523-3.277-3.414-4.559-5.156-3.613-4.902-6.805-10.27-9.711-15.855-1.391-2.668-2.598-5.609-3.77-8.324-.453-1.047-.445-2.633-1.387-3.172-1.281 1.988-3.172 3.598-4.164 5.945-1.582 3.754-1.789 8.336-2.375 13.082-.348.125-.195.039-.398.199-2.762-.668-3.73-3.508-4.758-5.949-2.594-6.164-3.078-16.09-.793-23.191.59-1.836 3.262-7.617 2.18-9.316-.516-1.691-2.219-2.672-3.172-3.965-1.18-1.598-2.355-3.703-3.172-5.551-2.125-4.805-3.113-10.203-5.352-15.062-1.07-2.324-2.875-4.676-4.359-6.738-1.645-2.289-3.484-3.977-4.758-6.742-.453-.984-1.066-2.559-.398-3.566.215-.684.516-.969 1.191-1.191 1.148-.887 4.352.297 5.547.793 3.18 1.32 5.832 2.578 8.527 4.363 1.289.855 2.598 2.512 4.16 2.973h1.785c2.789.641 5.914.195 8.523.988 4.609 1.402 8.738 3.582 12.488 5.949 11.422 7.215 20.766 17.48 27.156 29.734 1.027 1.973 1.473 3.852 2.379 5.945 1.824 4.219 4.125 8.559 5.941 12.688 1.816 4.113 3.582 8.27 6.148 11.695 1.348 1.801 6.551 2.766 8.918 3.766 1.66.699 4.379 1.43 5.949 2.379 3 1.809 5.906 3.965 8.723 5.945 1.402.992 5.73 3.168 5.945 4.957zm-88.605-75.52c-1.453-.027-2.48.156-3.566.395v.199h.195c.695 1.422 1.918 2.34 2.777 3.566l1.98 4.164.199-.195c1.227-.867 1.789-2.25 1.781-4.363-.492-.52-.562-1.164-.992-1.785-.562-.824-1.66-1.289-2.375-1.98zm0 0"/></symbol>
+      <symbol id="i-mongo" viewBox="0 0 128 128"><path fill-rule="evenodd" clip-rule="evenodd" fill="#439934" d="M88.038 42.812c1.605 4.643 2.761 9.383 3.141 14.296.472 6.095.256 12.147-1.029 18.142-.035.165-.109.32-.164.48-.403.001-.814-.049-1.208.012-3.329.523-6.655 1.065-9.981 1.604-3.438.557-6.881 1.092-10.313 1.687-1.216.21-2.721-.041-3.212 1.641-.014.046-.154.054-.235.08l.166-10.051-.169-24.252 1.602-.275c2.62-.429 5.24-.864 7.862-1.281 3.129-.497 6.261-.98 9.392-1.465 1.381-.215 2.764-.412 4.148-.618z"/><path fill-rule="evenodd" clip-rule="evenodd" fill="#45A538" d="M61.729 110.054c-1.69-1.453-3.439-2.842-5.059-4.37-8.717-8.222-15.093-17.899-18.233-29.566-.865-3.211-1.442-6.474-1.627-9.792-.13-2.322-.318-4.665-.154-6.975.437-6.144 1.325-12.229 3.127-18.147l.099-.138c.175.233.427.439.516.702 1.759 5.18 3.505 10.364 5.242 15.551 5.458 16.3 10.909 32.604 16.376 48.9.107.318.384.579.583.866l-.87 2.969z"/><path fill-rule="evenodd" clip-rule="evenodd" fill="#46A037" d="M88.038 42.812c-1.384.206-2.768.403-4.149.616-3.131.485-6.263.968-9.392 1.465-2.622.417-5.242.852-7.862 1.281l-1.602.275-.012-1.045c-.053-.859-.144-1.717-.154-2.576-.069-5.478-.112-10.956-.18-16.434-.042-3.429-.105-6.857-.175-10.285-.043-2.13-.089-4.261-.185-6.388-.052-1.143-.236-2.28-.311-3.423-.042-.657.016-1.319.029-1.979.817 1.583 1.616 3.178 2.456 4.749 1.327 2.484 3.441 4.314 5.344 6.311 7.523 7.892 12.864 17.068 16.193 27.433z"/><path fill-rule="evenodd" clip-rule="evenodd" fill="#409433" d="M65.036 80.753c.081-.026.222-.034.235-.08.491-1.682 1.996-1.431 3.212-1.641 3.432-.594 6.875-1.13 10.313-1.687 3.326-.539 6.652-1.081 9.981-1.604.394-.062.805-.011 1.208-.012-.622 2.22-1.112 4.488-1.901 6.647-.896 2.449-1.98 4.839-3.131 7.182a49.142 49.142 0 01-6.353 9.763c-1.919 2.308-4.058 4.441-6.202 6.548-1.185 1.165-2.582 2.114-3.882 3.161l-.337-.23-1.214-1.038-1.256-2.753a41.402 41.402 0 01-1.394-9.838l.023-.561.171-2.426c.057-.828.133-1.655.168-2.485.129-2.982.241-5.964.359-8.946z"/><path fill-rule="evenodd" clip-rule="evenodd" fill="#4FAA41" d="M65.036 80.753c-.118 2.982-.23 5.964-.357 8.947-.035.83-.111 1.657-.168 2.485l-.765.289c-1.699-5.002-3.399-9.951-5.062-14.913-2.75-8.209-5.467-16.431-8.213-24.642a4498.887 4498.887 0 00-6.7-19.867c-.105-.31-.407-.552-.617-.826l4.896-9.002c.168.292.39.565.496.879a6167.476 6167.476 0 016.768 20.118c2.916 8.73 5.814 17.467 8.728 26.198.116.349.308.671.491 1.062l.67-.78-.167 10.052z"/><path fill-rule="evenodd" clip-rule="evenodd" fill="#4AA73C" d="M43.155 32.227c.21.274.511.516.617.826a4498.887 4498.887 0 016.7 19.867c2.746 8.211 5.463 16.433 8.213 24.642 1.662 4.961 3.362 9.911 5.062 14.913l.765-.289-.171 2.426-.155.559c-.266 2.656-.49 5.318-.814 7.968-.163 1.328-.509 2.632-.772 3.947-.198-.287-.476-.548-.583-.866-5.467-16.297-10.918-32.6-16.376-48.9a3888.972 3888.972 0 00-5.242-15.551c-.089-.263-.34-.469-.516-.702l3.272-8.84z"/><path fill-rule="evenodd" clip-rule="evenodd" fill="#57AE47" d="M65.202 70.702l-.67.78c-.183-.391-.375-.714-.491-1.062-2.913-8.731-5.812-17.468-8.728-26.198a6167.476 6167.476 0 00-6.768-20.118c-.105-.314-.327-.588-.496-.879l6.055-7.965c.191.255.463.482.562.769 1.681 4.921 3.347 9.848 5.003 14.778 1.547 4.604 3.071 9.215 4.636 13.813.105.308.47.526.714.786l.012 1.045c.058 8.082.115 16.167.171 24.251z"/><path fill-rule="evenodd" clip-rule="evenodd" fill="#60B24F" d="M65.021 45.404c-.244-.26-.609-.478-.714-.786-1.565-4.598-3.089-9.209-4.636-13.813-1.656-4.93-3.322-9.856-5.003-14.778-.099-.287-.371-.514-.562-.769 1.969-1.928 3.877-3.925 5.925-5.764 1.821-1.634 3.285-3.386 3.352-5.968.003-.107.059-.214.145-.514l.519 1.306c-.013.661-.072 1.322-.029 1.979.075 1.143.259 2.28.311 3.423.096 2.127.142 4.258.185 6.388.069 3.428.132 6.856.175 10.285.067 5.478.111 10.956.18 16.434.008.861.098 1.718.152 2.577z"/><path fill-rule="evenodd" clip-rule="evenodd" fill="#A9AA88" d="M62.598 107.085c.263-1.315.609-2.62.772-3.947.325-2.649.548-5.312.814-7.968l.066-.01.066.011a41.402 41.402 0 001.394 9.838c-.176.232-.425.439-.518.701-.727 2.05-1.412 4.116-2.143 6.166-.1.28-.378.498-.574.744l-.747-2.566.87-2.969z"/><path fill-rule="evenodd" clip-rule="evenodd" fill="#B6B598" d="M62.476 112.621c.196-.246.475-.464.574-.744.731-2.05 1.417-4.115 2.143-6.166.093-.262.341-.469.518-.701l1.255 2.754c-.248.352-.59.669-.728 1.061l-2.404 7.059c-.099.283-.437.483-.663.722l-.695-3.985z"/><path fill-rule="evenodd" clip-rule="evenodd" fill="#C2C1A7" d="M63.171 116.605c.227-.238.564-.439.663-.722l2.404-7.059c.137-.391.48-.709.728-1.061l1.215 1.037c-.587.58-.913 1.25-.717 2.097l-.369 1.208c-.168.207-.411.387-.494.624-.839 2.403-1.64 4.819-2.485 7.222-.107.305-.404.544-.614.812-.109-1.387-.22-2.771-.331-4.158z"/><path fill-rule="evenodd" clip-rule="evenodd" fill="#CECDB7" d="M63.503 120.763c.209-.269.506-.508.614-.812.845-2.402 1.646-4.818 2.485-7.222.083-.236.325-.417.494-.624l-.509 5.545c-.136.157-.333.294-.398.477-.575 1.614-1.117 3.24-1.694 4.854-.119.333-.347.627-.525.938-.158-.207-.441-.407-.454-.623-.051-.841-.016-1.688-.013-2.533z"/><path fill-rule="evenodd" clip-rule="evenodd" fill="#DBDAC7" d="M63.969 123.919c.178-.312.406-.606.525-.938.578-1.613 1.119-3.239 1.694-4.854.065-.183.263-.319.398-.477l.012 3.64-1.218 3.124-1.411-.495z"/><path fill-rule="evenodd" clip-rule="evenodd" fill="#EBE9DC" d="M65.38 124.415l1.218-3.124.251 3.696-1.469-.572z"/><path fill-rule="evenodd" clip-rule="evenodd" fill="#CECDB7" d="M67.464 110.898c-.196-.847.129-1.518.717-2.097l.337.23-1.054 1.867z"/><path fill-rule="evenodd" clip-rule="evenodd" fill="#4FAA41" d="M64.316 95.172l-.066-.011-.066.01.155-.559-.023.56z"/></symbol>
+      <symbol id="i-git" viewBox="0 0 128 128"><path fill="#F34F29" d="M124.737 58.378L69.621 3.264c-3.172-3.174-8.32-3.174-11.497 0L46.68 14.71l14.518 14.518c3.375-1.139 7.243-.375 9.932 2.314 2.703 2.706 3.461 6.607 2.294 9.993l13.992 13.993c3.385-1.167 7.292-.413 9.994 2.295 3.78 3.777 3.78 9.9 0 13.679a9.673 9.673 0 01-13.683 0 9.677 9.677 0 01-2.105-10.521L68.574 47.933l-.002 34.341a9.708 9.708 0 012.559 1.828c3.778 3.777 3.778 9.898 0 13.683-3.779 3.777-9.904 3.777-13.679 0-3.778-3.784-3.778-9.905 0-13.683a9.65 9.65 0 013.167-2.11V47.333a9.581 9.581 0 01-3.167-2.111c-2.862-2.86-3.551-7.06-2.083-10.576L41.056 20.333 3.264 58.123a8.133 8.133 0 000 11.5l55.117 55.114c3.174 3.174 8.32 3.174 11.499 0l54.858-54.858a8.135 8.135 0 00-.001-11.501z"/></symbol>
+      <symbol id="i-github" viewBox="0 0 128 128"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M64 5.103c-33.347 0-60.388 27.035-60.388 60.388 0 26.682 17.303 49.317 41.297 57.303 3.017.56 4.125-1.31 4.125-2.905 0-1.44-.056-6.197-.082-11.243-16.8 3.653-20.345-7.125-20.345-7.125-2.747-6.98-6.705-8.836-6.705-8.836-5.48-3.748.413-3.67.413-3.67 6.063.425 9.257 6.223 9.257 6.223 5.386 9.23 14.127 6.562 17.573 5.02.542-3.903 2.107-6.568 3.834-8.076-13.413-1.525-27.514-6.704-27.514-29.843 0-6.593 2.36-11.98 6.223-16.21-.628-1.52-2.695-7.662.584-15.98 0 0 5.07-1.623 16.61 6.19C53.7 35 58.867 34.327 64 34.304c5.13.023 10.3.694 15.127 2.033 11.526-7.813 16.59-6.19 16.59-6.19 3.287 8.317 1.22 14.46.593 15.98 3.872 4.23 6.215 9.617 6.215 16.21 0 23.194-14.127 28.3-27.574 29.796 2.167 1.874 4.097 5.55 4.097 11.183 0 8.08-.07 14.583-.07 16.572 0 1.607 1.088 3.49 4.148 2.897 23.98-7.994 41.263-30.622 41.263-57.294C124.388 32.14 97.35 5.104 64 5.104z"/></symbol>
+      <symbol id="i-vscode" viewBox="0 0 128 128"><mask id="vs1" width="128" height="128" x="0" y="0" maskUnits="userSpaceOnUse" style="mask-type:alpha"><path fill="#fff" fill-rule="evenodd" d="M90.767 127.126a7.968 7.968 0 0 0 6.35-.244l26.353-12.681a8 8 0 0 0 4.53-7.209V21.009a8 8 0 0 0-4.53-7.21L97.117 1.12a7.97 7.97 0 0 0-9.093 1.548l-50.45 46.026L15.6 32.013a5.328 5.328 0 0 0-6.807.302l-7.048 6.411a5.335 5.335 0 0 0-.006 7.888L20.796 64 1.74 81.387a5.336 5.336 0 0 0 .006 7.887l7.048 6.411a5.327 5.327 0 0 0 6.807.303l21.974-16.68 50.45 46.025a7.96 7.96 0 0 0 2.743 1.793Zm5.252-92.183L57.74 64l38.28 29.058V34.943Z" clip-rule="evenodd"/></mask><g mask="url(#vs1)"><path fill="#0065A9" d="M123.471 13.82 97.097 1.12A7.973 7.973 0 0 0 88 2.668L1.662 81.387a5.333 5.333 0 0 0 .006 7.887l7.052 6.411a5.333 5.333 0 0 0 6.811.303l103.971-78.875c3.488-2.646 8.498-.158 8.498 4.22v-.306a8.001 8.001 0 0 0-4.529-7.208Z"/><path fill="#007ACC" d="m123.471 114.181-26.374 12.698A7.973 7.973 0 0 1 88 125.333L1.662 46.613a5.333 5.333 0 0 1 .006-7.887l7.052-6.411a5.333 5.333 0 0 1 6.811-.303l103.971 78.874c3.488 2.647 8.498.159 8.498-4.219v.306a8.001 8.001 0 0 1-4.529 7.208Z"/><path fill="#1F9CF0" d="M97.098 126.882A7.977 7.977 0 0 1 88 125.333c2.952 2.952 8 .861 8-3.314V5.98c0-4.175-5.048-6.266-8-3.313a7.977 7.977 0 0 1 9.098-1.549L123.467 13.8A8 8 0 0 1 128 21.01v85.982a8 8 0 0 1-4.533 7.21l-26.369 12.681Z"/></g></symbol>
+      <symbol id="i-figma" viewBox="0 0 128 128"><path fill="#0acf83" d="M45.5 129c11.9 0 21.5-9.6 21.5-21.5V86H45.5C33.6 86 24 95.6 24 107.5S33.6 129 45.5 129zm0 0"/><path fill="#a259ff" d="M24 64.5C24 52.6 33.6 43 45.5 43H67v43H45.5C33.6 86 24 76.4 24 64.5zm0 0"/><path fill="#f24e1e" d="M24 21.5C24 9.6 33.6 0 45.5 0H67v43H45.5C33.6 43 24 33.4 24 21.5zm0 0"/><path fill="#ff7262" d="M67 0h21.5C100.4 0 110 9.6 110 21.5S100.4 43 88.5 43H67zm0 0"/><path fill="#1abcfe" d="M110 64.5c0 11.9-9.6 21.5-21.5 21.5S67 76.4 67 64.5 76.6 43 88.5 43 110 52.6 110 64.5zm0 0"/></symbol>
+      <symbol id="i-linkedin" viewBox="0 0 128 128"><path fill="currentColor" d="M116 3H12a8.91 8.91 0 0 0-9 8.8v104.42a8.91 8.91 0 0 0 9 8.78h104a8.93 8.93 0 0 0 9-8.81V11.77A8.93 8.93 0 0 0 116 3z"/><path fill="currentColor" d="M21.06 48.73h18.11V107H21.06zm9.06-29a10.5 10.5 0 1 1-10.5 10.49 10.5 10.5 0 0 1 10.5-10.49M50.53 48.73h17.36v8h.24c2.42-4.58 8.32-9.41 17.13-9.41C103.6 47.28 107 59.35 107 75v32H88.89V78.65c0-6.75-.12-15.44-9.41-15.44s-10.87 7.36-10.87 15V107H50.53z"/></symbol>
+
+      <!-- UI icons (24 viewBox, stroke = currentColor) -->
+      <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></symbol>
+      <symbol id="i-monitor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></symbol>
+      <symbol id="i-server" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><path d="M6 6h.01M6 18h.01"/></symbol>
+      <symbol id="i-db" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 5v14c0 1.66-4 3-9 3s-9-1.34-9-3V5"/><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"/></symbol>
+      <symbol id="i-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 10 6-10 6L2 8z"/><path d="m2 14 10 6 10-6"/></symbol>
+      <symbol id="i-folder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></symbol>
+      <symbol id="i-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></symbol>
+      <symbol id="i-grad" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></symbol>
+      <symbol id="i-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+      <symbol id="i-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></symbol>
+      <symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+      <symbol id="i-arrow-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></symbol>
+      <symbol id="i-external" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6M10 14 21 3"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></symbol>
+      <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"/></symbol>
+      <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></symbol>
+      <symbol id="i-tools" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></symbol>
+      <symbol id="i-chevron-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
+    </defs>
+  </svg>
+
+  <!-- Skip link for keyboard users -->
+  <a class="skip-link" href="#home">Skip to content</a>
+
+  <!-- Scroll progress indicator (fills as you scroll) -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- ===================== HEADER / NAVIGATION ===================== -->
+  <header class="header" id="header">
+    <nav class="nav container" aria-label="Main navigation">
+      <!-- Logo -->
+      <a href="#home" class="logo" aria-label="SC — Sovanna CHHEM, back to top">
+        <span class="logo-mark" aria-hidden="true">SC</span>
+      </a>
+
+      <!-- Desktop + mobile menu -->
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#home" class="nav-link active">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#services" class="nav-link">Services</a></li>
+        <li><a href="#journey" class="nav-link">Journey</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <!-- Dark / light mode toggle -->
+        <button class="theme-toggle" id="themeToggle" aria-label="Switch between dark and light mode">
+          <svg class="icon-sun"><use href="#i-sun"></use></svg>
+          <svg class="icon-moon"><use href="#i-moon"></use></svg>
+        </button>
+
+        <!-- Hamburger (mobile only) -->
+        <button class="nav-toggle" id="navToggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navMenu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ===================== 1. HERO ===================== -->
+    <section class="hero section" id="home">
+      <div class="hero-bg" aria-hidden="true">
+        <span class="orb orb-1"></span>
+        <span class="orb orb-2"></span>
+        <span class="grid-lines"></span>
+      </div>
+
+      <div class="container hero-grid">
+        <!-- Left: copy -->
+        <div class="hero-content">
+          <span class="hero-badge">
+            <span class="status-dot" aria-hidden="true"></span>
+            Open to new opportunities
+          </span>
+
+          <h1 class="hero-title">
+            Hi, I'm <span class="gradient-text">Sovanna CHHEM</span>
+          </h1>
+
+          <!-- Typing animation swaps between roles (see script.js) -->
+          <p class="hero-role">
+            <span class="typed-text" id="typedText" aria-label="Full-Stack Web Developer">Full-Stack Web Developer</span>
+            <span class="typed-cursor" aria-hidden="true">|</span>
+          </p>
+
+          <p class="hero-desc">
+            I build modern, responsive, and user-friendly web applications with
+            clean code and creative solutions.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">
+              View My Projects
+              <svg class="btn-icon"><use href="#i-arrow-down"></use></svg>
+            </a>
+            <a href="#contact" class="btn btn-outline">
+              Contact Me
+              <svg class="btn-icon"><use href="#i-mail"></use></svg>
+            </a>
+          </div>
+
+          <!-- Quick social links (duplicated in Contact + footer) -->
+          <div class="hero-socials">
+            <a href="https://github.com/sovanna-chhem" target="_blank" rel="noopener" aria-label="GitHub profile" class="social-link">
+              <svg class="social-icon"><use href="#i-github"></use></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/sovanna-chhem" target="_blank" rel="noopener" aria-label="LinkedIn profile" class="social-link">
+              <svg class="social-icon"><use href="#i-linkedin"></use></svg>
+            </a>
+            <a href="mailto:hello@sovanna-chhem.dev" aria-label="Send an email" class="social-link">
+              <svg class="social-icon"><use href="#i-mail"></use></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: anime avatar in a HUD frame + floating tech icons -->
+        <div class="hero-visual">
+          <div class="avatar-glow" aria-hidden="true"></div>
+
+          <div class="avatar-frame">
+            <!-- EDIT: replace with your own photo or avatar (any format) -->
+            <img src="assets/images/hero-avatar.png" alt="Anime-style developer avatar of Sovanna CHHEM" width="1024" height="1536" loading="eager" />
+            <span class="avatar-corner corner-tl" aria-hidden="true"></span>
+            <span class="avatar-corner corner-br" aria-hidden="true"></span>
+            <span class="scanline" aria-hidden="true"></span>
+          </div>
+
+          <!-- Floating technology chips -->
+          <span class="float-chip chip-1" aria-hidden="true"><svg class="chip-svg"><use href="#i-html5"></use></svg></span>
+          <span class="float-chip chip-2" aria-hidden="true"><svg class="chip-svg"><use href="#i-css3"></use></svg></span>
+          <span class="float-chip chip-3" aria-hidden="true"><svg class="chip-svg"><use href="#i-js"></use></svg></span>
+          <span class="float-chip chip-4" aria-hidden="true"><svg class="chip-svg"><use href="#i-node"></use></svg></span>
+          <span class="float-chip chip-5" aria-hidden="true"><svg class="chip-svg"><use href="#i-mongo"></use></svg></span>
+          <span class="float-chip chip-6" aria-hidden="true"><svg class="chip-svg"><use href="#i-figma"></use></svg></span>
+        </div>
+      </div>
+
+      <!-- Scroll hint -->
+      <a href="#about" class="scroll-hint" aria-label="Scroll down to About section">
+        <span class="mouse" aria-hidden="true"></span>
+      </a>
+    </section>
+
+    <!-- ===================== 2. ABOUT ===================== -->
+    <section class="section" id="about">
+      <div class="container">
+        <header class="section-head reveal">
+          <span class="section-eyebrow">Who I am</span>
+          <h2 class="section-title">About <span class="gradient-text">Me</span></h2>
+        </header>
+
+        <div class="about-grid">
+          <!-- Bio -->
+          <div class="about-text reveal">
+            <p>
+              I am <strong>Sovanna CHHEM</strong>, a passionate Full-Stack Web Developer
+              who enjoys creating modern websites and web applications. I am continuously
+              improving my programming skills and learning new technologies to become a
+              better developer.
+            </p>
+            <p>
+              My focus is on writing clean, maintainable code and building interfaces that
+              feel fast and intuitive. From pixel-perfect frontends to reliable server-side
+              APIs, I care about every layer of the stack.
+            </p>
+            <a href="#contact" class="btn btn-primary btn-sm">Let's Talk
+              <svg class="btn-icon"><use href="#i-arrow-right"></use></svg>
+            </a>
+          </div>
+
+          <!-- Stats — EDIT the numbers below (data-target) and labels -->
+          <div class="stats-grid">
+            <div class="stat-card glass reveal" style="--i: 0">
+              <span class="stat-icon" aria-hidden="true"><svg><use href="#i-folder"></use></svg></span>
+              <p class="stat-number"><span class="count" data-target="15">0</span><span class="stat-suffix">+</span></p>
+              <p class="stat-label">Projects Built</p>
+            </div>
+
+            <div class="stat-card glass reveal" style="--i: 1">
+              <span class="stat-icon" aria-hidden="true"><svg><use href="#i-code"></use></svg></span>
+              <p class="stat-number"><span class="count" data-target="12">0</span><span class="stat-suffix">+</span></p>
+              <p class="stat-label">Technologies</p>
+            </div>
+
+            <div class="stat-card glass reveal" style="--i: 2">
+              <span class="stat-icon" aria-hidden="true"><svg><use href="#i-grad"></use></svg></span>
+              <p class="stat-number"><span class="count" data-target="900">0</span><span class="stat-suffix">+</span></p>
+              <p class="stat-label">Learning Hours</p>
+            </div>
+
+            <div class="stat-card glass reveal" style="--i: 3">
+              <span class="stat-icon" aria-hidden="true"><svg><use href="#i-target"></use></svg></span>
+              <p class="stat-number stat-goal">Full-Stack</p>
+              <p class="stat-label">Current Goal</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 3. SKILLS ===================== -->
+    <section class="section" id="skills">
+      <div class="container">
+        <header class="section-head reveal">
+          <span class="section-eyebrow">My toolbox</span>
+          <h2 class="section-title">Skills &amp; <span class="gradient-text">Technologies</span></h2>
+          <p class="section-sub">The technologies I use to bring ideas to life — levels are a rough self-assessment.</p>
+        </header>
+
+        <!-- EDIT skill levels: change the --level value (and the matching % text) -->
+        <div class="skills-grid" id="skillsGrid">
+          <!-- Frontend -->
+          <div class="skill-card glass reveal" style="--i: 0">
+            <h3 class="skill-cat">
+              <span class="skill-cat-icon" aria-hidden="true"><svg><use href="#i-monitor"></use></svg></span>
+              Frontend
+            </h3>
+            <ul class="skill-list">
+              <li class="skill">
+                <div class="skill-info">
+                  <span class="skill-icon" aria-hidden="true"><svg><use href="#i-html5"></use></svg></span>
+                  <div class="skill-meta">
+                    <p class="skill-name">HTML5 <span class="skill-level">90%</span></p>
+                    <p class="skill-desc">Semantic, accessible markup for modern pages</p>
+                  </div>
+                </div>
+                <div class="skill-bar" role="progressbar" aria-label="HTML5 skill level" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                  <span class="skill-fill" style="--level: 90%"></span>
+                </div>
+              </li>
+              <li class="skill">
+                <div class="skill-info">
+                  <span class="skill-icon" aria-hidden="true"><svg><use href="#i-css3"></use></svg></span>
+                  <div class="skill-meta">
+                    <p class="skill-name">CSS3 <span class="skill-level">85%</span></p>
+                    <p class="skill-desc">Flexbox, Grid, animations and responsive layouts</p>
+                  </div>
+                </div>
+                <div class="skill-bar" role="progressbar" aria-label="CSS3 skill level" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
+                  <span class="skill-fill" style="--level: 85%"></span>
+                </div>
+              </li>
+              <li class="skill">
+                <div class="skill-info">
+                  <span class="skill-icon" aria-hidden="true"><svg><use href="#i-js"></use></svg></span>
+                  <div class="skill-meta">
+                    <p class="skill-name">JavaScript <span class="skill-level">80%</span></p>
+                    <p class="skill-desc">Interactivity, DOM manipulation, ES6+ features</p>
+                  </div>
+                </div>
+                <div class="skill-bar" role="progressbar" aria-label="JavaScript skill level" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+                  <span class="skill-fill" style="--level: 80%"></span>
+                </div>
+              </li>
+              <li class="skill">
+                <div class="skill-info">
+                  <span class="skill-icon" aria-hidden="true"><svg><use href="#i-monitor"></use></svg></span>
+                  <div class="skill-meta">
+                    <p class="skill-name">Responsive Design <span class="skill-level">85%</span></p>
+                    <p class="skill-desc">Mobile-first layouts that work on every screen</p>
+                  </div>
+                </div>
+                <div class="skill-bar" role="progressbar" aria-label="Responsive design skill level" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
+                  <span class="skill-fill" style="--level: 85%"></span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Backend -->
+          <div class="skill-card glass reveal" style="--i: 1">
+            <h3 class="skill-cat">
+              <span class="skill-cat-icon" aria-hidden="true"><svg><use href="#i-server"></use></svg></span>
+              Backend
+            </h3>
+            <ul class="skill-list">
+              <li class="skill">
+                <div class="skill-info">
+                  <span class="skill-icon" aria-hidden="true"><svg><use href="#i-node"></use></svg></span>
+                  <div class="skill-meta">
+                    <p class="skill-name">Node.js <span class="skill-level">75%</span></p>
+                    <p class="skill-desc">Server-side JavaScript and REST APIs</p>
+                  </div>
+                </div>
+                <div class="skill-bar" role="progressbar" aria-label="Node.js skill level" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                  <span class="skill-fill" style="--level: 75%"></span>
+                </div>
+              </li>
+              <li class="skill">
+                <div class="skill-info">
+                  <span class="skill-icon" aria-hidden="true"><svg><use href="#i-express"></use></svg></span>
+                  <div class="skill-meta">
+                    <p class="skill-name">Express.js <span class="skill-level">70%</span></p>
+                    <p class="skill-desc">Fast, minimal Node.js web framework</p>
+                  </div>
+                </div>
+                <div class="skill-bar" role="progressbar" aria-label="Express.js skill level" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+                  <span class="skill-fill" style="--level: 70%"></span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Database -->
+          <div class="skill-card glass reveal" style="--i: 2">
+            <h3 class="skill-cat">
+              <span class="skill-cat-icon" aria-hidden="true"><svg><use href="#i-db"></use></svg></span>
+              Database
+            </h3>
+            <ul class="skill-list">
+              <li class="skill">
+                <div class="skill-info">
+                  <span class="skill-icon" aria-hidden="true"><svg><use href="#i-mysql"></use></svg></span>
+                  <div class="skill-meta">
+                    <p class="skill-name">MySQL <span class="skill-level">75%</span></p>
+                    <p class="skill-desc">Relational design, queries and normalization</p>
+                  </div>
+                </div>
+                <div class="skill-bar" role="progressbar" aria-label="MySQL skill level" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                  <span class="skill-fill" style="--level: 75%"></span>
+                </div>
+              </li>
+              <li class="skill">
+                <div class="skill-info">
+                  <span class="skill-icon" aria-hidden="true"><svg><use href="#i-mongo"></use></svg></span>
+                  <div class="skill-meta">
+                    <p class="skill-name">MongoDB <span class="skill-level">65%</span></p>
+                    <p class="skill-desc">Flexible NoSQL document data modeling</p>
+                  </div>
+                </div>
+                <div class="skill-bar" role="progressbar" aria-label="MongoDB skill level" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">
+                  <span class="skill-fill" style="--level: 65%"></span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Tools -->
+          <div class="skill-card glass reveal" style="--i: 3">
+            <h3 class="skill-cat">
+              <span class="skill-cat-icon" aria-hidden="true"><svg><use href="#i-tools"></use></svg></span>
+              Tools
+            </h3>
+            <ul class="skill-list">
+              <li class="skill">
+                <div class="skill-info">
+                  <span class="skill-icon" aria-hidden="true"><svg><use href="#i-git"></use></svg></span>
+                  <div class="skill-meta">
+                    <p class="skill-name">Git <span class="skill-level">80%</span></p>
+                    <p class="skill-desc">Version control, branching and workflows</p>
+                  </div>
+                </div>
+                <div class="skill-bar" role="progressbar" aria-label="Git skill level" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+                  <span class="skill-fill" style="--level: 80%"></span>
+                </div>
+              </li>
+              <li class="skill">
+                <div class="skill-info">
+                  <span class="skill-icon" aria-hidden="true"><svg><use href="#i-github"></use></svg></span>
+                  <div class="skill-meta">
+                    <p class="skill-name">GitHub <span class="skill-level">80%</span></p>
+                    <p class="skill-desc">Hosting, collaboration and open source</p>
+                  </div>
+                </div>
+                <div class="skill-bar" role="progressbar" aria-label="GitHub skill level" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+                  <span class="skill-fill" style="--level: 80%"></span>
+                </div>
+              </li>
+              <li class="skill">
+                <div class="skill-info">
+                  <span class="skill-icon" aria-hidden="true"><svg><use href="#i-vscode"></use></svg></span>
+                  <div class="skill-meta">
+                    <p class="skill-name">VS Code <span class="skill-level">85%</span></p>
+                    <p class="skill-desc">My daily editor, shortcuts and extensions</p>
+                  </div>
+                </div>
+                <div class="skill-bar" role="progressbar" aria-label="VS Code skill level" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
+                  <span class="skill-fill" style="--level: 85%"></span>
+                </div>
+              </li>
+              <li class="skill">
+                <div class="skill-info">
+                  <span class="skill-icon" aria-hidden="true"><svg><use href="#i-figma"></use></svg></span>
+                  <div class="skill-meta">
+                    <p class="skill-name">Figma <span class="skill-level">65%</span></p>
+                    <p class="skill-desc">UI design, wireframes and prototyping</p>
+                  </div>
+                </div>
+                <div class="skill-bar" role="progressbar" aria-label="Figma skill level" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">
+                  <span class="skill-fill" style="--level: 65%"></span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 4. PROJECTS ===================== -->
+    <section class="section" id="projects">
+      <div class="container">
+        <header class="section-head reveal">
+          <span class="section-eyebrow">My work</span>
+          <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
+          <p class="section-sub">A selection of things I've built while learning and growing as a developer.</p>
+        </header>
+
+        <!-- Filtering (vanilla JS in script.js) -->
+        <div class="filter-bar reveal" role="group" aria-label="Filter projects by category">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="frontend">Frontend</button>
+          <button class="filter-btn" data-filter="backend">Backend</button>
+          <button class="filter-btn" data-filter="full-stack">Full-Stack</button>
+        </div>
+
+        <div class="projects-grid" id="projectsGrid">
+          <!-- EDIT: replace the image src with your own screenshot (PNG/JPG/WebP) -->
+          <article class="project-card glass reveal" data-category="full-stack" style="--i: 0">
+            <div class="project-media">
+              <img src="assets/images/project-student-management.webp" alt="Student Management System dashboard screenshot" width="1536" height="1024" loading="lazy" />
+              <span class="project-badge">Full-Stack</span>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Student Management System</h3>
+              <p class="project-desc">A complete system to manage students, attendance and courses from a single admin dashboard.</p>
+              <div class="project-tags">
+                <span>HTML</span><span>CSS</span><span>JavaScript</span><span>MySQL</span>
+              </div>
+              <div class="project-actions">
+                <a href="#" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
+                  Live Demo
+                  <svg class="btn-icon"><use href="#i-external"></use></svg>
+                </a>
+                <a href="#" target="_blank" rel="noopener" class="btn btn-outline btn-sm">
+                  <svg class="btn-icon"><use href="#i-github"></use></svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card glass reveal" data-category="full-stack" style="--i: 1">
+            <div class="project-media">
+              <img src="assets/images/project-ecommerce.webp" alt="E-commerce website homepage screenshot" width="1536" height="1024" loading="lazy" />
+              <span class="project-badge">Full-Stack</span>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">E-Commerce Website</h3>
+              <p class="project-desc">A modern online store with product catalog, cart, and a Node.js-powered checkout flow.</p>
+              <div class="project-tags">
+                <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Node.js</span>
+              </div>
+              <div class="project-actions">
+                <a href="#" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
+                  Live Demo
+                  <svg class="btn-icon"><use href="#i-external"></use></svg>
+                </a>
+                <a href="#" target="_blank" rel="noopener" class="btn btn-outline btn-sm">
+                  <svg class="btn-icon"><use href="#i-github"></use></svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card glass reveal" data-category="frontend" style="--i: 2">
+            <div class="project-media">
+              <img src="assets/images/project-expense-tracker.webp" alt="Expense Tracker finance dashboard screenshot" width="1536" height="1024" loading="lazy" />
+              <span class="project-badge">Frontend</span>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Expense Tracker</h3>
+              <p class="project-desc">Track income and expenses with charts, categories and monthly summaries — all in the browser.</p>
+              <div class="project-tags">
+                <span>HTML</span><span>CSS</span><span>JavaScript</span>
+              </div>
+              <div class="project-actions">
+                <a href="#" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
+                  Live Demo
+                  <svg class="btn-icon"><use href="#i-external"></use></svg>
+                </a>
+                <a href="#" target="_blank" rel="noopener" class="btn btn-outline btn-sm">
+                  <svg class="btn-icon"><use href="#i-github"></use></svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card glass reveal" data-category="backend" style="--i: 3">
+            <div class="project-media">
+              <img src="assets/images/project-chat-app.webp" alt="Chat application interface screenshot" width="1536" height="1024" loading="lazy" />
+              <span class="project-badge">Backend</span>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Chat Application</h3>
+              <p class="project-desc">A real-time messaging app built on Node.js and Express with rooms and user presence.</p>
+              <div class="project-tags">
+                <span>JavaScript</span><span>Node.js</span><span>Express.js</span>
+              </div>
+              <div class="project-actions">
+                <a href="#" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
+                  Live Demo
+                  <svg class="btn-icon"><use href="#i-external"></use></svg>
+                </a>
+                <a href="#" target="_blank" rel="noopener" class="btn btn-outline btn-sm">
+                  <svg class="btn-icon"><use href="#i-github"></use></svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 5. SERVICES ===================== -->
+    <section class="section" id="services">
+      <div class="container">
+        <header class="section-head reveal">
+          <span class="section-eyebrow">What I do</span>
+          <h2 class="section-title">Services &amp; <span class="gradient-text">Expertise</span></h2>
+        </header>
+
+        <div class="services-grid">
+          <article class="service-card glass reveal" style="--i: 0">
+            <span class="service-icon" aria-hidden="true"><svg><use href="#i-monitor"></use></svg></span>
+            <h3>Frontend Development</h3>
+            <p>Build responsive and modern user interfaces with clean HTML, CSS and JavaScript.</p>
+            <span class="service-tag">HTML · CSS · JS</span>
+          </article>
+
+          <article class="service-card glass reveal" style="--i: 1">
+            <span class="service-icon" aria-hidden="true"><svg><use href="#i-server"></use></svg></span>
+            <h3>Backend Development</h3>
+            <p>Create reliable server-side applications, REST APIs and business logic with Node.js.</p>
+            <span class="service-tag">Node.js · Express</span>
+          </article>
+
+          <article class="service-card glass reveal" style="--i: 2">
+            <span class="service-icon" aria-hidden="true"><svg><use href="#i-db"></use></svg></span>
+            <h3>Database Development</h3>
+            <p>Design and manage structured application data with SQL and NoSQL databases.</p>
+            <span class="service-tag">MySQL · MongoDB</span>
+          </article>
+
+          <article class="service-card glass reveal" style="--i: 3">
+            <span class="service-icon" aria-hidden="true"><svg><use href="#i-layers"></use></svg></span>
+            <h3>Full-Stack Development</h3>
+            <p>Build complete web applications from frontend to backend, end to end.</p>
+            <span class="service-tag">All the above</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 6. JOURNEY ===================== -->
+    <section class="section" id="journey">
+      <div class="container">
+        <header class="section-head reveal">
+          <span class="section-eyebrow">My path</span>
+          <h2 class="section-title">Developer <span class="gradient-text">Journey</span></h2>
+        </header>
+
+        <!-- EDIT: add/remove .timeline-item entries to update the timeline -->
+        <div class="timeline">
+          <div class="timeline-item reveal">
+            <span class="timeline-dot" aria-hidden="true"></span>
+            <div class="timeline-card glass">
+              <span class="timeline-year">2025</span>
+              <h3>Started Learning Web Development</h3>
+              <p>Discovered web development and wrote my very first HTML page — the start of the journey.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item reveal">
+            <span class="timeline-dot" aria-hidden="true"></span>
+            <div class="timeline-card glass">
+              <span class="timeline-year">2026</span>
+              <h3>Improved Core Skills</h3>
+              <p>Deepened my HTML, CSS and JavaScript skills by building real projects every week.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item reveal">
+            <span class="timeline-dot" aria-hidden="true"></span>
+            <div class="timeline-card glass">
+              <span class="timeline-year">2026</span>
+              <h3>Started Building Full-Stack Projects</h3>
+              <p>Combined Node.js, Express and databases with the frontend to ship complete applications.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item reveal">
+            <span class="timeline-dot timeline-dot--future" aria-hidden="true"></span>
+            <div class="timeline-card glass">
+              <span class="timeline-year timeline-year--future">✦ Future</span>
+              <h3>Professional Full-Stack Developer</h3>
+              <p>Become a professional Full-Stack Web Developer and build products people love to use.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 7. CONTACT ===================== -->
+    <section class="section" id="contact">
+      <div class="container">
+        <header class="section-head reveal">
+          <span class="section-eyebrow">Get in touch</span>
+          <h2 class="section-title">Let's Build Something <span class="gradient-text">Together</span></h2>
+          <p class="section-sub">I'm always interested in learning, creating, and working on interesting web projects.</p>
+        </header>
+
+        <div class="contact-grid">
+          <!-- Contact details — EDIT: replace links with your real URLs -->
+          <div class="contact-info reveal">
+            <a href="https://github.com/sovanna-chhem" target="_blank" rel="noopener" class="contact-item glass">
+              <span class="contact-icon" aria-hidden="true"><svg><use href="#i-github"></use></svg></span>
+              <span class="contact-meta">
+                <span class="contact-label">GitHub</span>
+                <span class="contact-value">@sovanna-chhem</span>
+              </span>
+              <svg class="contact-arrow"><use href="#i-arrow-right"></use></svg>
+            </a>
+
+            <a href="https://www.linkedin.com/in/sovanna-chhem" target="_blank" rel="noopener" class="contact-item glass">
+              <span class="contact-icon" aria-hidden="true"><svg><use href="#i-linkedin"></use></svg></span>
+              <span class="contact-meta">
+                <span class="contact-label">LinkedIn</span>
+                <span class="contact-value">/in/sovanna-chhem</span>
+              </span>
+              <svg class="contact-arrow"><use href="#i-arrow-right"></use></svg>
+            </a>
+
+            <a href="mailto:hello@sovanna-chhem.dev" class="contact-item glass">
+              <span class="contact-icon" aria-hidden="true"><svg><use href="#i-mail"></use></svg></span>
+              <span class="contact-meta">
+                <span class="contact-label">Email</span>
+                <span class="contact-value">hello@sovanna-chhem.dev</span>
+              </span>
+              <svg class="contact-arrow"><use href="#i-arrow-right"></use></svg>
+            </a>
+          </div>
+
+          <!-- Contact form -->
+          <div class="contact-form-wrap glass reveal">
+            <!--
+              Frontend-only form. It validates input and shows a success message,
+              but does NOT send an email. To connect a real backend later, see
+              the "sendContactMessage" section in script.js.
+            -->
+            <form id="contactForm" novalidate>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" required minlength="2" />
+                  <small class="error-msg" id="nameError" aria-live="polite"></small>
+                </div>
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required />
+                  <small class="error-msg" id="emailError" aria-live="polite"></small>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" placeholder="Project inquiry" required minlength="3" />
+                <small class="error-msg" id="subjectError" aria-live="polite"></small>
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" placeholder="Tell me about your project..." required minlength="10"></textarea>
+                <small class="error-msg" id="messageError" aria-live="polite"></small>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">
+                Send Message
+                <svg class="btn-icon"><use href="#i-send"></use></svg>
+              </button>
+            </form>
+
+            <!-- Success message (shown by script.js after valid submission) -->
+            <div class="form-success" id="formSuccess" hidden>
+              <span class="success-icon" aria-hidden="true"><svg><use href="#i-check"></use></svg></span>
+              <h3>Message sent successfully!</h3>
+              <p>Thank you, <span id="successName">friend</span>. I'll get back to you as soon as possible.</p>
+              <button type="button" class="btn btn-outline" id="resetFormBtn">Send another message</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== 8. FOOTER ===================== -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="#home" class="logo" aria-label="SC — Sovanna CHHEM, back to top">
+          <span class="logo-mark" aria-hidden="true">SC</span>
+        </a>
+        <p class="footer-name">Sovanna CHHEM</p>
+        <p class="footer-role">Full-Stack Web Developer</p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#services">Services</a>
+        <a href="#journey">Journey</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="footer-socials">
+        <a href="https://github.com/sovanna-chhem" target="_blank" rel="noopener" aria-label="GitHub profile" class="social-link">
+          <svg class="social-icon"><use href="#i-github"></use></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/sovanna-chhem" target="_blank" rel="noopener" aria-label="LinkedIn profile" class="social-link">
+          <svg class="social-icon"><use href="#i-linkedin"></use></svg>
+        </a>
+        <a href="mailto:hello@sovanna-chhem.dev" aria-label="Send an email" class="social-link">
+          <svg class="social-icon"><use href="#i-mail"></use></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>© <span id="year">2026</span> Sovanna CHHEM. All rights reserved.</p>
+        <p class="footer-made">Built with <span class="heart" aria-hidden="true">♥</span> HTML · CSS · JavaScript</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to top -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <svg><use href="#i-chevron-up"></use></svg>
+  </button>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
