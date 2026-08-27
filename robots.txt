@@ -1,0 +1,4 @@
+uer-agent:*
+Allow : /
+
+sitemap:https://sovannachhem.vercel.app/sitemap.xml
