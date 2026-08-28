@@ -1,4 +1,4 @@
-uer-agent:*
-Allow : /
+User-agent: *
+Allow: /
 
-sitemap:https://sovannachhem.vercel.app/sitemap.xml
+Sitemap: https://sovannachhem.vercel.app/sitemap.xml
